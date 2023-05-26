@@ -1,7 +1,7 @@
 #include <fstream>
 #include <string>
 
-#include "tiles.h"
+#include "tiles.hpp"
 
 VirtualTile::VirtualTile(const IV2& top_left_corner,
                          const IV2& bottom_right_corner) :

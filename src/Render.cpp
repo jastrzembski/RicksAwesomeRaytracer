@@ -1,6 +1,6 @@
 #include <iostream>
 
-#include "render.h"
+#include "Render.hpp"
 
 Render::Render() {
     std::cout << "Render is initializing." << std::endl;

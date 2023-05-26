@@ -1,9 +1,9 @@
-#ifndef RAYTRACER_TILES_H
-#define RAYTRACER_TILES_H
+#ifndef RAYTRACER_TILES_HPP
+#define RAYTRACER_TILES_HPP
 
 #include <string>
 
-#include "vecs.h"
+#include "vecs.hpp"
 
 struct Tile;
 
@@ -35,7 +35,9 @@ struct VirtualTile {
 struct Tile : VirtualTile {
     V4 *buffer;
     Tile(int width, int height);
-    void checker_fill(V4 OO, V4 OI, int side);
+    void checker_fill( V4 OO = V4(0.4, 0.4, 0.4, 1),
+                       V4 OI = V4(0.2, 0.8, 0.2, 1),
+                      int side = 16);
     ~Tile() {
         delete buffer;
     }
@@ -47,4 +49,4 @@ struct Tile : VirtualTile {
     void save_as_ppm(const std::string& path);
 };
 
-#endif //RAYTRACER_TILES_H
+#endif //RAYTRACER_TILES_HPP

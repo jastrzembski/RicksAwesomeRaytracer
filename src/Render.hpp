@@ -1,5 +1,5 @@
-#ifndef RAYTRACER_RENDER_H
-#define RAYTRACER_RENDER_H
+#ifndef RAYTRACER_RENDER_HPP
+#define RAYTRACER_RENDER_HPP
 
 class Render {
 private:
@@ -8,4 +8,4 @@ public:
     Render(std::string path_to_scene);
 };
 
-#endif //RAYTRACER_RENDER_H
+#endif //RAYTRACER_RENDER_HPP

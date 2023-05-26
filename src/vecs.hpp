@@ -3,8 +3,8 @@
 // Created by byte on 5/18/23.
 //
 
-#ifndef RAYTRACER_VECS_H
-#define RAYTRACER_VECS_H
+#ifndef RAYTRACER_VECS_HPP
+#define RAYTRACER_VECS_HPP
 
 #include <ostream>
 //TODO: replace vectors' structures with ones inheriting from one flexible structure
@@ -60,4 +60,4 @@ struct IV2 : Vector<int, 2> {
     }
 };*/
 
-#endif //RAYTRACER_VECS_H
+#endif //RAYTRACER_VECS_HPP

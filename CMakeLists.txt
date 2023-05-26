@@ -3,6 +3,13 @@ project(Raytracer VERSION 0.1.0)
 #file(GLOB SRCS "src/*.cpp")
 
 add_executable(Raytracer
-        src/render.cpp
         src/main.cpp
-        src/tiles.cpp)
+        src/Render.cpp
+        src/Render.hpp
+        src/tiles.cpp
+        src/tiles.hpp
+        src/vecs.hpp
+        src/Scene.cpp
+        src/Scene.hpp
+        src/Camera.cpp
+        src/Camera.hpp)
