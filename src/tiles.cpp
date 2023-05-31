@@ -7,17 +7,24 @@ VirtualTile::VirtualTile(const IV2& top_left_corner,
                          const IV2& bottom_right_corner) :
     top_left_corner(top_left_corner),
     bottom_right_corner(bottom_right_corner),
-    tile(nullptr) {};
+    tile(nullptr) {}
 
-int VirtualTile::width() {
+VirtualTile::VirtualTile(const IV2& top_left_corner,
+            const IV2& bottom_right_corner,
+            Tile& base_tile) :
+        top_left_corner(top_left_corner),
+        bottom_right_corner(bottom_right_corner),
+        tile(&base_tile) {}
+
+int VirtualTile::width() const {
     return bottom_right_corner.x - top_left_corner.x + 1;
 }
 
-int VirtualTile::height() {
+int VirtualTile::height() const {
     return bottom_right_corner.y - top_left_corner.y + 1;
 }
 
-int VirtualTile::resolution() {
+int VirtualTile::resolution() const {
     return width() * height();
 }
 Tile::Tile(int width, int height) :
@@ -44,4 +51,20 @@ void Tile::checker_fill(const V4 OO, const V4 OI, int side) {
     for(auto i = 0; i < resolution(); i++) {
         buffer[i] = (i / width() / side % 2) == (i % width() / side % 2) ? OO : OI;
     }
+}
+
+void VirtualTile::write_pixel(IV2 &coordinates, V4 &color) const {
+    tile->write_pixel(coordinates, color);
+}
+
+void VirtualTile::write_pixel(int successive_number, V4& color) const {
+    auto coordinates = successive_to_coordinates(successive_number);
+    tile->write_pixel(coordinates, color);
+}
+
+void Tile::write_pixel(int successive_number, V4& color) const {
+    buffer[successive_number] = color;
+}
+void Tile::write_pixel(IV2& coordinates, V4& color) const {
+    write_pixel(coordinates_to_successive(coordinates), color);
 }
