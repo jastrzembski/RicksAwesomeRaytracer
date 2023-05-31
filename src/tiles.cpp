@@ -54,12 +54,14 @@ void Tile::checker_fill(const V4 OO, const V4 OI, int side) {
 }
 
 void VirtualTile::write_pixel(IV2 &coordinates, V4 &color) const {
-    tile->write_pixel(coordinates, color);
+    if (tile) tile->write_pixel(coordinates, color);
 }
 
 void VirtualTile::write_pixel(int successive_number, V4& color) const {
-    auto coordinates = successive_to_coordinates(successive_number);
-    tile->write_pixel(coordinates, color);
+    if (tile) {
+        auto coordinates = successive_to_coordinates(successive_number);
+        tile->write_pixel(coordinates, color);
+    }
 }
 
 void Tile::write_pixel(int successive_number, V4& color) const {

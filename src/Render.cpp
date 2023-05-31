@@ -18,5 +18,5 @@ void Render::render() {
     auto glue = V4(0.8, 0.3, 0.9, 0);
     for (auto i = 0; i < result.resolution(); i++)
         result.write_pixel(i, glue);
-    result.save_as_ppm("/home/byte/cotusiedzieje.ppm");
+    result.save_as_ppm("cotusiedzieje.ppm");
 }

@@ -1,8 +1,3 @@
-//
-// Created by byte on 5/18/23.//
-// Created by byte on 5/18/23.
-//
-
 #ifndef RAYTRACER_VECS_HPP
 #define RAYTRACER_VECS_HPP
 
