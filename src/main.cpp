@@ -1,20 +1,43 @@
 #include <iostream>
+#include <map>
+#include <vector>
 
 #include "Render.hpp"
 #include "vecs.hpp"
 #include "tiles.hpp"
 
+std::map<std::string, std::string> extract_flags(std::vector<std::string> args);
+
 //Everything startas from the main function
 int main(int argc, char** argv) {
-    auto tile = Tile(200, 200);
-    auto tile_v = VirtualTile(IV2(0, 0), IV2(50, 50), tile);
-    tile.checker_fill();
-    auto red_eye_loc = IV2(5, 5);
-    auto red_eye = V4(1, 0, 0, 0);
-    tile_v.write_pixel(red_eye_loc, red_eye);
-    tile.save_as_ppm("checker.ppm");
+    std::vector<std::string> arguments(argv + 1, argv + argc);
+    auto flags = extract_flags(arguments);
+    if (flags["help"] == "solo flag") std::cout << "Can't help now" << std::endl; //TODO help
 
-    auto render = Render(RenderProperties(1000, 500, 50));
+    auto properties = RenderProperties(flags["scene"],
+                                       flags["output"],
+                                       1000,
+                                       500,
+                                       50);
+    auto render = Render(properties);
     render.render();
     return 0;
+}
+
+/**
+ * @brief The function to write arguments to map data structure
+ * @param args vector of arguments
+ * @return map structure containing flags
+*/
+std::map<std::string, std::string> extract_flags(std::vector<std::string> args) {
+    std::map<std::string, std::string> flags;
+    for (auto arg = args.begin(); arg < args.end(); arg++) {
+        if ((*arg)[0] == '-') {
+            flags[(*arg).substr(1)] =
+                    ((arg == args.end() - 1) || (*(arg+1))[0] == '-')
+                    ? "solo flag"
+                    : *(arg+1);
+        }
+    }
+    return flags;
 }
