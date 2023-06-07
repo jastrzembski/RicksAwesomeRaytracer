@@ -53,20 +53,20 @@ void Tile::checker_fill(const V4 OO, const V4 OI, int side) {
     }
 }
 
-void VirtualTile::write_pixel(IV2 &coordinates, V4 &color) const {
+void VirtualTile::write_pixel(IV2 &coordinates, const V4 &color) const {
     if (tile) tile->write_pixel(coordinates, color);
 }
 
-void VirtualTile::write_pixel(int successive_number, V4& color) const {
+void VirtualTile::write_pixel(int successive_number, const V4& color) const {
     if (tile) {
         auto coordinates = successive_to_coordinates(successive_number);
         tile->write_pixel(coordinates, color);
     }
 }
 
-void Tile::write_pixel(int successive_number, V4& color) const {
+void Tile::write_pixel(int successive_number, const V4& color) const {
     buffer[successive_number] = color;
 }
-void Tile::write_pixel(IV2& coordinates, V4& color) const {
+void Tile::write_pixel(IV2& coordinates, const V4& color) const {
     write_pixel(coordinates_to_successive(coordinates), color);
 }

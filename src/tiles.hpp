@@ -54,13 +54,13 @@ struct VirtualTile {
      /**
       * @brief Writes pixel to the base tile buffer.
       */
-     virtual void write_pixel(IV2& coordinates, V4& color) const;
+     virtual void write_pixel(IV2& coordinates, const V4& color) const;
 
      /**
       * @brief Converts successive number buffer to coordinates and writes
       * the pixel to the base buffer at it.
       */
-     virtual void write_pixel(int successive_number, V4& color) const;
+     virtual void write_pixel(int successive_number, const V4& color) const;
 };
 
 
@@ -84,12 +84,12 @@ struct Tile : VirtualTile {
     /**
      * @brief Writes the color at the given pixel's coordinates.
      * */
-    void write_pixel(IV2& coordinates, V4& color) const override;
+    void write_pixel(IV2& coordinates, const V4& color) const override;
 
     /**
      * @brief Writes the color to the buffer at the given index.
      * */
-    void write_pixel(int successive_number, V4& color) const override;
+    void write_pixel(int successive_number, const V4& color) const override;
 };
 
 #endif //RAYTRACER_TILES_HPP

@@ -9,7 +9,5 @@ add_executable(Raytracer
         src/tiles.cpp
         src/tiles.hpp
         src/vecs.hpp
-        src/Scene.cpp
-        src/Scene.hpp
-        src/Camera.cpp
-        src/Camera.hpp)
+        src/vecs.cpp
+        )
