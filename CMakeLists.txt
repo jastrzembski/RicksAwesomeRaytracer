@@ -8,6 +8,8 @@ add_executable(Raytracer
         src/Render.hpp
         src/tiles.cpp
         src/tiles.hpp
-        src/vecs.hpp
         src/vecs.cpp
+        src/vecs.hpp
+        src/backgrounds.cpp
+        src/backgrounds.hpp
         )
