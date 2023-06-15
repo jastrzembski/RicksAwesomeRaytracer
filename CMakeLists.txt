@@ -12,4 +12,8 @@ add_executable(Raytracer
         src/vecs.hpp
         src/backgrounds.cpp
         src/backgrounds.hpp
-        )
+        src/Scene.cpp
+        src/Scene.hpp
+        src/Ray.hpp
+        src/Camera.cpp
+        src/Camera.hpp)

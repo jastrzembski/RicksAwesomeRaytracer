@@ -1,7 +1,7 @@
 #include <iostream>
 
 #include "Render.hpp"
-
+#include "Scene.hpp"
 
 RenderProperties::RenderProperties(const std::string& scene,
                                    const std::string& output,
@@ -22,8 +22,12 @@ Render::Render(const RenderProperties& properties) :
 
 void Render::render() {
     auto glue = V4(0.8, 0.3, 0.9, 0);
-    for (auto i = 0; i < result.resolution(); i++)
-        result.write_pixel(i, glue);
+    auto cam = Camera();
+    for (auto i = 0; i < result.width(); i++) {
+        auto coords = result.successive_to_coordinates(i);
+        std::cout << cam.get_ray((double)(coords.x + 1) / result.width(),
+                                 (double)(coords.y + 1) / result.height()).direction << std::endl;
+    }
 
     auto output = properties.output_path.empty()
                         ? "output.ppm"
