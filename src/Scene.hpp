@@ -14,7 +14,7 @@ class Scene {
 private:
     Camera camera;
     Background *background;
-    std::vector<Mesh> meshes;
+    std::vector<Mesh*> meshes;
 public:
     Scene();
     ~Scene();

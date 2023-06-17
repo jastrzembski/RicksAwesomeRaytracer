@@ -25,8 +25,6 @@ int main(int argc, char** argv) {
                                        20);
     auto render = Render(properties);
     render.render();
-    auto a = V3(5, 1, 1);
-    std::cout << a.unit_vector() << std::endl;
     return 0;
 }
 

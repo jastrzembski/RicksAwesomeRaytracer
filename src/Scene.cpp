@@ -9,15 +9,24 @@ V4 Scene::background_color(const V3 &orientation) const {
 }
 
 void Scene::intersect(const Ray &ray, RayHit &ray_hit) const {
-    //Set ray_hit to default no-intersection when there's no meshes to intersect
-    if (meshes.empty()) ray_hit = RayHit();
+    //Set ray_hit to default no-intersection
+    ray_hit = RayHit();
+
+    //return when there's no meshes to intersect
+    if (meshes.empty()) return;
+
+    for (auto mesh : meshes) {
+        mesh->intersect(ray, ray_hit);
+    }
 }
 
 Scene::Scene() {
     camera = Camera();
     background = new SolidBackground(V4(1, 0, 0, 1));
+    meshes.push_back(new Mesh());
 }
 
 Scene::~Scene() {
     delete background;
+    for (auto mesh : meshes) delete mesh;
 }

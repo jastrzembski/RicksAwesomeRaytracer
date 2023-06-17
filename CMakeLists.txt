@@ -26,4 +26,4 @@ add_executable(Raytracer
         src/Sphere.cpp
         src/Sphere.hpp
         src/trace.hpp
-        src/trace.cpp)
+        src/trace.cpp src/math.hpp)
