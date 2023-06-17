@@ -15,5 +15,15 @@ add_executable(Raytracer
         src/Scene.cpp
         src/Scene.hpp
         src/Ray.hpp
+        src/Ray.cpp
         src/Camera.cpp
-        src/Camera.hpp)
+        src/Camera.hpp
+        src/RayHit.cpp
+        src/RayHit.hpp
+        src/Mesh.cpp
+        src/Mesh.hpp
+        src/Geometry.hpp
+        src/Sphere.cpp
+        src/Sphere.hpp
+        src/trace.hpp
+        src/trace.cpp)

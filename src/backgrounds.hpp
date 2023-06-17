@@ -12,9 +12,10 @@ public:
     /**
      * @brief Computes the color for rays that do not intersect any objects.
      * @param orientation Orientation of the ray. Used until the Sky material is introduced.
-     * @return Color of the background in RGBA.
+     * @return Virtual function returning a color of the background.
      */
-    virtual V4 color(const V3& orientation) = 0;
+    virtual V4 color(const V3& orientation) const = 0;
+    virtual ~Background() {}
 };
 
 /**
@@ -27,7 +28,7 @@ public:
      * @brief Returns transparent color for any orientation.
      * @return RGBA (0, 0, 0, 0)
      */
-    V4 color(const V3& orientation) override;
+    V4 color(const V3& orientation) const override;
 };
 
 /**
@@ -37,12 +38,12 @@ class SolidBackground : public Background {
 private:
     V4 background_color;
 public:
-    SolidBackground(const V4& color) : background_color(color) {}
+    SolidBackground(const V4& color);
     /**
      * @brief Returns the solid background color for any orientation.
      * @return SolidBackground background color as an RGBA value.
      */
-    V4 color(const V3& orientation) override;
+    V4 color(const V3& orientation) const override;
 };
 
 #endif //RAYTRACER_BACKGROUNDS_HPP

@@ -7,26 +7,27 @@ RenderProperties::RenderProperties(const std::string& scene,
                                    const std::string& output,
                                    int width,
                                    int height,
-                                   int samples_per_pixel) :
+                                   int samples_per_pixel,
+                                   int bouncing_depth) :
         width(width),
         height(height),
         samples_per_pixel(samples_per_pixel),
+        bouncing_depth(bouncing_depth),
         scene_path(scene),
         output_path(output) {}
 
 Render::Render(const RenderProperties& properties) :
     properties(properties),
     result(properties.width, properties.height) {
-    std::cout << "Render is starting." << std::endl;
 }
 
 void Render::render() {
     auto glue = V4(0.8, 0.3, 0.9, 0);
-    auto cam = Camera();
-    for (auto i = 0; i < result.width(); i++) {
+    for (auto i = 0; i < result.resolution(); i++) {
         auto coords = result.successive_to_coordinates(i);
-        std::cout << cam.get_ray((double)(coords.x + 1) / result.width(),
-                                 (double)(coords.y + 1) / result.height()).direction << std::endl;
+        auto primary_ray =  scene.primary_ray((double)(coords.x + 1) / result.width(),
+                                 (double)(coords.y + 1) / result.height());
+        result.write_pixel(coords, trace_ray(primary_ray, scene, properties.bouncing_depth));
     }
 
     auto output = properties.output_path.empty()

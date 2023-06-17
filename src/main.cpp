@@ -12,13 +12,17 @@ std::map<std::string, std::string> extract_flags(std::vector<std::string> args);
 int main(int argc, char** argv) {
     std::vector<std::string> arguments(argv + 1, argv + argc);
     auto flags = extract_flags(arguments);
-    if (flags["help"] == "solo flag") std::cout << "Can't help now" << std::endl; //TODO help
+    if (flags["help"] == "solo flag") {
+        std::cout << "Can't help now" << std::endl; //TODO help
+        return 0;
+    }
 
     auto properties = RenderProperties(flags["scene"],
                                        flags["output"],
-                                       10,
-                                       5,
-                                       50);
+                                       1000,
+                                       500,
+                                       50,
+                                       20);
     auto render = Render(properties);
     render.render();
     auto a = V3(5, 1, 1);
