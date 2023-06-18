@@ -14,6 +14,7 @@ public:
      * is closer to the ray origin than the previous one
      */
     virtual bool intersect(const Ray& ray, RayHit& ray_hit) const = 0;
+    virtual ~Geometry() = default;
 };
 
 

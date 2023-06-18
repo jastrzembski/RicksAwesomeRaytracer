@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.0.0)
+cmake_minimum_required(VERSION 3.1.3)
 project(Raytracer VERSION 0.1.0)
 #file(GLOB SRCS "src/*.cpp")
 
@@ -26,4 +26,8 @@ add_executable(Raytracer
         src/Sphere.cpp
         src/Sphere.hpp
         src/trace.hpp
-        src/trace.cpp src/math.hpp)
+        src/trace.cpp
+        src/math.hpp
+        src/Importer.cpp
+        src/Importer.hpp)
+target_link_options(Raytracer PRIVATE -ljsoncpp)

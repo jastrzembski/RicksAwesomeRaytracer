@@ -2,11 +2,15 @@
 #include <map>
 #include <vector>
 
+#include <json/json.h>
+#include <fstream>
+
 #include "Render.hpp"
 #include "vecs.hpp"
 #include "tiles.hpp"
 
 std::map<std::string, std::string> extract_flags(std::vector<std::string> args);
+
 
 //Everything startas from the main function
 int main(int argc, char** argv) {

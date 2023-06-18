@@ -12,9 +12,12 @@
 class Mesh {
     std::vector<Geometry*> geometry;
 public:
-    Mesh() {
-        geometry.push_back(new Sphere(V3(0, 0, 5), 1));
+    Mesh() {}
+
+    void add_geometry(Geometry* geom) {
+        geometry.push_back(geom);
     }
+
     ~Mesh() {
         for (auto i : geometry) {
             delete i;
