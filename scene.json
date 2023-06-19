@@ -1,0 +1,27 @@
+{
+  "scene" : {
+    "meshes" : {
+
+      "sphere 1" : {
+        "geometry" : [{
+          "type" : "sphere",
+          "center" : "0 0 2",
+          "radius" : 2
+        }],
+        "material": {
+          "type": "UFOMat"
+        }
+      },
+      "sphere 2" : {
+        "geometry" : [{
+          "type" : "sphere",
+          "center" : "0 -3 2",
+          "radius" : 2
+        }],
+        "material": {
+          "type": "UFOMat"
+        }
+      }
+    }
+  }
+}

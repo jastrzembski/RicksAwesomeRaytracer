@@ -29,5 +29,5 @@ add_executable(Raytracer
         src/trace.cpp
         src/math.hpp
         src/Importer.cpp
-        src/Importer.hpp)
+        src/Importer.hpp src/Material.cpp src/Material.hpp)
 target_link_options(Raytracer PRIVATE -ljsoncpp)

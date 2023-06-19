@@ -8,6 +8,7 @@
 #include "Mesh.hpp"
 #include "Geometry.hpp"
 #include "vecs.hpp"
+#include "Sphere.hpp"
 
 
 bool Importer::import(const std::string &path, Scene &scene) {
@@ -21,7 +22,6 @@ bool Importer::import(const std::string &path, Scene &scene) {
     else std::cout << "Json successfully parsed." << std::endl;
 
     for (auto mesh : data["scene"]["meshes"]) {
-        std::cout << mesh << std::endl;
         Mesh* m = new Mesh();
         for (auto shape : mesh["geometry"]) {
             Geometry* geometry;

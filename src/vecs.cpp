@@ -57,9 +57,17 @@ std::ostream& operator<<(std::ostream &out, const V3 &v) {
     return out << v.x << ' ' << v.y << ' ' << v.z;
 }
 
+V4 operator*(const V4 &a, const V4 &b) {
+    return V4(a.x * b.x, a.y * b.y, a.z * b.z, a.w * b.w);
+}
+
 double V3::lenght() const {
     return sqrt(x*x + y*y + z*z);
 }
 V3 V3::unit_vector() const {
     return *this / lenght();
+}
+
+double V3::squared_lenght() const {
+    return x*x + y*y + z*z;
 }

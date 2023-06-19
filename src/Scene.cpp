@@ -30,3 +30,7 @@ Scene::~Scene() {
     delete background;
     for (auto mesh : meshes) delete mesh;
 }
+
+void Scene::add_mesh(Mesh *mesh) {
+    meshes.push_back(mesh);
+}

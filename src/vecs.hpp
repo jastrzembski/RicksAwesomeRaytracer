@@ -2,6 +2,8 @@
 #define RAYTRACER_VECS_HPP
 
 #include <ostream>
+#include <iostream>
+#include <sstream>
 #include <cmath>
 //TODO: replace vectors' structures with ones inheriting from one flexible structure
 
@@ -13,6 +15,7 @@ struct IV2 {
 struct V4;
 V4 operator/(const V4& a, double b);
 V4 operator*(const V4& a, double b);
+V4 operator*(const V4& a, const V4& b);
 V4 operator+(const V4& a, const V4& b);
 V4 operator-(const V4& a, const V4& b);
 std::ostream& operator<<(std::ostream &out, const V4 &v);
@@ -37,7 +40,15 @@ struct V3 {
     double x, y, z;
     V3() {}
     V3(double x, double y, double z) : x(x), y(y), z(z) {}
+    V3(std::string str) {
+        std::istringstream iss(str);
+
+        if (!(iss >> x >> y >> z)) {
+            std::cout << "Error when loading vector from string\n";
+        }
+    }
     double lenght() const;
+    double squared_lenght() const;
     V3 unit_vector() const;
 };
 

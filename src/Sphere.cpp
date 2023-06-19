@@ -19,10 +19,10 @@ bool Sphere::intersect(const Ray &ray, RayHit &ray_hit) const {
 
     double distance = t0;
 
-    if (!ray_hit.hit || ray_hit.distance < distance) {
+    if (ray_hit.distance > 0 && (!ray_hit.hit || ray_hit.distance < distance)) {
         ray_hit.hit = true;
         ray_hit.distance = distance;
-        ray_hit.intersection_point = ray.direction * distance;
+        ray_hit.intersection_point = ray.origin + ray.direction * distance;
         ray_hit.normal = ray_hit.intersection_point - center;
         return true;
     }

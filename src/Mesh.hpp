@@ -6,23 +6,17 @@
 #include "Ray.hpp"
 #include "RayHit.hpp"
 #include "Geometry.hpp"
-
-#include "Sphere.hpp"
+#include "Material.hpp"
 
 class Mesh {
+    Material* material;
     std::vector<Geometry*> geometry;
 public:
-    Mesh() {}
+    Mesh();
 
-    void add_geometry(Geometry* geom) {
-        geometry.push_back(geom);
-    }
-
-    ~Mesh() {
-        for (auto i : geometry) {
-            delete i;
-        }
-    }
+    void add_geometry(Geometry* geom);
+    void set_material(Material* mat);
+    ~Mesh();
     void intersect(const Ray& ray, RayHit& ray_hit) const;
 };
 

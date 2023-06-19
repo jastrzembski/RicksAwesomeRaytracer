@@ -23,9 +23,9 @@ int main(int argc, char** argv) {
 
     auto properties = RenderProperties(flags["scene"],
                                        flags["output"],
-                                       1000,
                                        500,
-                                       50,
+                                       250,
+                                       10,
                                        20);
     auto render = Render(properties);
     render.render();
