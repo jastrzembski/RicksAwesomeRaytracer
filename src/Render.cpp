@@ -3,6 +3,7 @@
 #include "Render.hpp"
 #include "Scene.hpp"
 #include "Importer.hpp"
+#include "Sphere.hpp"
 
 RenderProperties::RenderProperties(const std::string& scene,
                                    const std::string& output,
@@ -22,6 +23,21 @@ Render::Render(const RenderProperties& properties) :
     result(properties.width, properties.height) {
     if(properties.scene_path.empty() || properties.scene_path == "solo flag") {
         // generic scene
+    } else if(properties.scene_path == "manual") {
+        std::cout << "Your own spheres are: " << std::endl;
+        for (std::string another_sphere; another_sphere != "n"; std::cin >> another_sphere) {
+            std::cout << "Center x, y and z: ";
+            V3 center;
+            std::cin >> center.x >> center.y >> center.z;
+            std::cout << "Enter radius: ";
+            double radius;
+            std::cin >> radius;
+            Mesh *mesh = new Mesh();
+            mesh->add_geometry(new Sphere(center, radius));
+            scene.add_mesh(mesh);
+
+            std::cout << "Do you maybe want to add another sphere [n for no, anything else for yes]: " << std::endl;
+        }
     } else {
         Importer importer;
         if(importer.import(properties.scene_path, scene))

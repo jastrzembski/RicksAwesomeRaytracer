@@ -20,6 +20,7 @@ int main(int argc, char** argv) {
         std::cout << "Can't help now" << std::endl; //TODO help
         return 0;
     }
+    if (flags["manual"] == "solo flag") flags["scene"] = "manual";
 
     auto properties = RenderProperties(flags["scene"],
                                        flags["output"],

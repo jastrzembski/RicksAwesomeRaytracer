@@ -14,7 +14,7 @@ bool Sphere::intersect(const Ray &ray, RayHit &ray_hit) const {
 
     if (t0 < 0) {
         t0 = t1;
-        if (t0 < 0.001 || t0 > 10000) return false;
+        if (t0 < 0.000001 || t0 > 10000) return false;
     }
 
     double distance = t0;
