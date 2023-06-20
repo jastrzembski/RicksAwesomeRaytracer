@@ -2,30 +2,28 @@
 #include "math.hpp"
 
 bool Sphere::intersect(const Ray &ray, RayHit &ray_hit) const {
-    double t0, t1;
 
-    V3 L = ray.origin - center;
-    double a = dot(ray.direction, ray.direction);
-    double b = 2 * dot(ray.direction, L);
-    double c = dot(L, L) - radius;
-    if (!solve_quadratic(a, b, c, t0, t1)) return false;
+        float t_min = 0.001, t_max = 1000;
+        V3 oc = (ray.origin - center);
+        float a = dot(ray.direction, ray.direction);
+        float b = dot(oc, ray.direction);
+        float c = dot(oc, oc) - radius*radius;
+        float discriminant = b*b - a*c;
 
-    if (t0 > t1) std::swap(t0, t1);
+        if (discriminant>0) {
+                float temp = (-b - sqrt(b*b-a*c))/a;
+                if (temp < t_max && temp > t_min && (!ray_hit.hit || temp < ray_hit.distance)) {
+                        ray_hit.hit = true;
+                        ray_hit.distance = temp;
+                        ray_hit.intersection_point = ray.origin + ray.direction * temp;;
+                        ray_hit.normal = ((ray_hit.intersection_point - center) / radius).unit_vector();
+                        return true;
+                }
+        }
+        return false;
 
-    if (t0 < 0) {
-        t0 = t1;
-        if (t0 < 0.000001 || t0 > 10000) return false;
-    }
+}
 
-    double distance = t0;
-
-    if (!ray_hit.hit || ray_hit.distance < distance) {
-        ray_hit.hit = true;
-        ray_hit.distance = distance;
-        ray_hit.intersection_point = ray.origin + ray.direction * distance;
-        ray_hit.normal = ray_hit.intersection_point - center;
-        return true;
-    }
-
-    return false;
+Sphere::Sphere(V3 center, double radius) : center(center), radius(radius) {
+    std::cout << "Sphere: " << center << " radius " << radius << std::endl;
 }

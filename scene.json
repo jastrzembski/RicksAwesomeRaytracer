@@ -15,11 +15,31 @@
       "sphere 2" : {
         "geometry" : [{
           "type" : "sphere",
-          "center" : "0 -3 2",
+          "center" : "-4 0 2",
           "radius" : 2
         }],
         "material": {
           "type": "UFOMat"
+        }
+      },
+        "sphere 3" : {
+            "geometry" : [{
+            "type" : "sphere",
+            "center" : "4 0 2",
+            "radius" : 2
+            }],
+            "material": {
+            "type": "UFOMat"
+            }
+        },
+      "sphere 4" : {
+        "geometry" : [{
+          "type" : "sphere",
+          "center" : "0 -102 0",
+          "radius" : 100
+        }],
+        "material" : {
+          "type" : "UFOMat"
         }
       }
     }

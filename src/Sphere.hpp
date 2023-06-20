@@ -12,7 +12,7 @@ private:
     V3 center;
     double radius;
 public:
-    Sphere(V3 center, double radius) : center(center), radius(radius) {}
+    Sphere(V3 center, double radius);
     bool intersect(const Ray& ray, RayHit& ray_hit) const override;
 };
 
