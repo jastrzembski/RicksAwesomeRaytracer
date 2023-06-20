@@ -22,7 +22,6 @@ void Scene::intersect(const Ray &ray, RayHit &ray_hit) const {
 
 Scene::Scene() {
     camera = Camera();
-    background = new SolidBackground(V4(1, 0, 0, 1));
     meshes.push_back(new Mesh());
 }
 
@@ -33,4 +32,8 @@ Scene::~Scene() {
 
 void Scene::add_mesh(Mesh *mesh) {
     meshes.push_back(mesh);
+}
+
+void Scene::set_background(Background *bckg) {
+    background = bckg;
 }

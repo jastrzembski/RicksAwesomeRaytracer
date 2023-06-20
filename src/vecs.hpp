@@ -24,6 +24,13 @@ struct V4 {
     double x, y, z, w;
     V4() {}
     V4(double x, double y, double z, double w) : x(x), y(y), z(z), w(w) {}
+    V4(std::string str) {
+        std::istringstream iss(str);
+
+        if (!(iss >> x >> y >> z >> w)) {
+            std::cout << "Error when loading vector from string\n";
+        }
+    }
 };
 
 struct V3;

@@ -1,35 +1,44 @@
 {
   "scene" : {
+    "background" : {
+      "type" : "solid",
+      "color" : "1 0.7 0.8 1"
+    },
     "meshes" : {
 
       "sphere 1" : {
         "geometry" : [{
           "type" : "sphere",
-          "center" : "0 0 2",
-          "radius" : 2
+          "center" : "0 0.3 2",
+          "radius" : 1.5
         }],
         "material": {
-          "type": "UFOMat"
+          "type": "UFOMat",
+          "color" : "0.9 0.9 0.9 1",
+          "matte" : 1
         }
       },
       "sphere 2" : {
         "geometry" : [{
           "type" : "sphere",
-          "center" : "-4 0 2",
+          "center" : "-4 0.1 2",
           "radius" : 2
         }],
         "material": {
-          "type": "UFOMat"
+          "type": "UFOMat",
+          "color" : "0.8 0.3 0.3 1",
+          "matte" : 0.2
         }
       },
         "sphere 3" : {
             "geometry" : [{
             "type" : "sphere",
-            "center" : "4 0 2",
-            "radius" : 2
+            "center" : "4 0.4 2",
+            "radius" : 1.7
             }],
             "material": {
-            "type": "UFOMat"
+            "type": "UFOMat",
+              "matte": 0
             }
         },
       "sphere 4" : {
@@ -39,8 +48,17 @@
           "radius" : 100
         }],
         "material" : {
-          "type" : "UFOMat"
+          "type" : "UFOMat",
+          "color" : "0.3 0.3 0.3 1",
+          "matte" : 0.1
         }
+      },
+      "no color" : {
+        "geometry" : [{
+          "type" : "sphere",
+          "center" : "-0.2 0.3 -0.5",
+          "radius" : 0.3
+        }]
       }
     }
   }

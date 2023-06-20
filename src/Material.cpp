@@ -16,7 +16,7 @@ UFOMat::UFOMat(V4 surface_color, double reflected, double matte, double fog) :
 Ray UFOMat::scatter(const V3 &intersection_point, const V3 &normal, const V3 &incident_direction, int depth) const {
     auto reflected_direction = (incident_direction - normal * 2 * dot(incident_direction, normal)).unit_vector();
     auto diffused_direction = (normal + random_in_unit_sphere()).unit_vector();
-    auto matted_direction = (reflected_direction * (1- matte) + diffused_direction * matte).unit_vector();
+    auto matted_direction = (reflected_direction * (1- matte) + (diffused_direction * matte)).unit_vector();
     return Ray(intersection_point, matted_direction, surface_color);
 }
 
