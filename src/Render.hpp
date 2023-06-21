@@ -17,16 +17,18 @@ struct RenderProperties {
                      int height = 500,
                      int samples_per_pixel = 50,
                      int bouncing_depth = 20);
+    void fill_gaps();
 };
 
 class Render {
 private:
     RenderProperties properties;
-    Tile result; //TODO result class
+    Tile *result;
     Scene scene;
 public:
-    Render(const RenderProperties& properties);
+    Render(const RenderProperties &prop);
     void render();
+    ~Render();
 //    void concurrent_render();
 };
 

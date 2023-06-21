@@ -24,10 +24,10 @@ int main(int argc, char** argv) {
 
     auto properties = RenderProperties(flags["scene"],
                                        flags["output"],
-                                       500,
-                                       250,
-                                       10,
-                                       20);
+                                       (flags["width"].empty() ? 0 : std::stoi(flags["width"])),
+                                       (flags["height"].empty() ? 0 : std::stoi(flags["height"])),
+                                       (flags["sampling"].empty() ? 0 : std::stoi(flags["sampling"])),
+                                       (flags["depth"].empty() ? 0 : std::stoi(flags["depth"])));
     auto render = Render(properties);
     render.render();
     return 0;

@@ -1,4 +1,10 @@
 {
+  "render" : {
+    "width" : 500,
+    "height" : 250,
+    "sampling" : 10,
+    "depth" : 20
+  },
   "scene" : {
     "background" : {
       "type" : "solid",

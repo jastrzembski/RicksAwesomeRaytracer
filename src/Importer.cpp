@@ -12,7 +12,7 @@
 #include "Material.hpp"
 
 
-bool Importer::import(const std::string &path, Scene &scene) {
+bool Importer::import(const std::string &path, Scene &scene, RenderProperties &render_properties) {
     std::cout << "Importing scene from " << path << std::endl;
     std::ifstream file(path);
     if (!file) return false;
@@ -21,6 +21,11 @@ bool Importer::import(const std::string &path, Scene &scene) {
     Json::Value data;
     if (!reader.parse(file, data)) return true;
     else std::cout << "Json successfully parsed." << std::endl;
+
+    if (render_properties.width == 0) render_properties.width = data["render"]["width"].asInt();
+    if (render_properties.height == 0) render_properties.height = data["render"]["height"].asInt();
+    if (render_properties.samples_per_pixel == 0) render_properties.samples_per_pixel = data["render"]["sampling"].asInt();
+    if (render_properties.bouncing_depth == 0) render_properties.bouncing_depth = data["render"]["depth"].asInt();
 
     if (data["scene"]["background"]["type"] == "solid") {
         Background* background = new SolidBackground(data["scene"]["background"]["color"].asString());

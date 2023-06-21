@@ -4,11 +4,12 @@
 #include <string>
 
 #include "Scene.hpp"
+#include "Render.hpp"
 
 class Importer {
 private:
 public:
-    bool import(const std::string& path, Scene& scene);
+    bool import(const std::string &path, Scene &scene, RenderProperties &render_properties);
 };
 
 
