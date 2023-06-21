@@ -35,15 +35,27 @@ Render::Render(const RenderProperties &prop) : properties(prop) {
             std::cout << "Center x, y and z: ";
             V3 center;
             std::cin >> center.x >> center.y >> center.z;
+
             std::cout << "Enter radius: ";
             double radius;
             std::cin >> radius;
+
+            std::cout << "Color <0, 1> RGBA: " << std::endl;
+            V4 color;
+            std::cin >> color.x >> color.y >> color.z >> color.w;
+
+            std::cout << "Matte: " << std::endl;
+            double matte;
+            std::cin >> matte;
+
             Mesh *mesh = new Mesh();
             mesh->add_geometry(new Sphere(center, radius));
+            mesh->set_material(new UFOMat(color, 0.5, matte, 0.5));
             scene.add_mesh(mesh);
 
             std::cout << "Do you maybe want to add another sphere [n for no, anything else for yes]: " << std::endl;
         }
+        scene.set_background(new SolidBackground(V4(0.75, 0.75, 0.75, 1)));
     } else if (!importer.import(properties.scene_path, scene, properties)) {
             std::cout << "Scene imported from " << properties.scene_path << std::endl;
 
@@ -51,16 +63,14 @@ Render::Render(const RenderProperties &prop) : properties(prop) {
         std::cout << "Failed to import from" << properties.scene_path << std::endl;
         //generic scene
     }
-
     properties.fill_gaps();
 
     result = new Tile(properties.width, properties.height);
 }
 
 void Render::render() {
-    auto glue = V4(0.8, 0.3, 0.9, 0);
     for (auto i = 0; i < result->resolution(); i++) {
-        std::cout << "\rRendering: " << i+1 << "/" << result->resolution();
+        std::cout << "\rRendering: " << (int)((double)(i+1) / result->resolution() * 100) << "%";
         auto coords = result->successive_to_coordinates(i);
         auto primary_ray =  scene.primary_ray((double)(coords.x + 1) / result->width(),
                                  (double)(coords.y + 1) / result->height());
@@ -71,6 +81,7 @@ void Render::render() {
         pixel_color = pixel_color / properties.samples_per_pixel;
         result->write_pixel(coords, pixel_color);
     }
+    std::cout << std::endl;
 
     auto output = properties.output_path.empty()
                         ? "output.ppm"
